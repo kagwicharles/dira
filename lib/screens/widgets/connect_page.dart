@@ -106,7 +106,7 @@ class ConnectPage extends StatelessWidget {
                   PrimaryButton(
                     text: 'Connect GitHub',
                     onPressed: () {
-                      context.go('/github-integration');
+                      context.push('/github-integration');
                     },
                     icon: Icons.code,
                   ),

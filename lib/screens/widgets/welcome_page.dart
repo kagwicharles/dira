@@ -154,8 +154,6 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  PageIndicator(currentPage: currentPage, totalPages: 3),
-                  const SizedBox(height: 30),
                   PrimaryButton(
                     text: 'Get Started',
                     onPressed: onGetStarted,
