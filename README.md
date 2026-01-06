@@ -1,16 +1,21 @@
-# dira
+# StandUp.io - Flutter Mobile App
 
-A new Flutter project.
+A modern Flutter application for automating daily standups with GitHub integration. StandUp.io helps development teams sync their status effortlessly by leveraging GitHub activity to auto-generate daily updates, eliminating the need for time-consuming meetings.
+
+The app features a smooth onboarding experience, GitHub repository integration, and an AI-powered standup generator that analyzes your commits and pull requests. Built with Flutter using go_router for navigation, the project follows a clean architecture with separated concerns, reusable components, and a dark-themed UI with vibrant green accents. Perfect for teams looking to spend less time talking and more time shipping.
+
+## Features
+- 🎯 Onboarding flow with 3 screens
+- 🔗 GitHub repository integration
+- 🤖 AI-powered standup generation
+- 😊 Mood tracking for daily check-ins
+- 📝 Automatic task detection from commits
+- 🎨 Modern dark UI with smooth animations
 
 ## Getting Started
+```bash
+flutter pub get
+flutter run
+```
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Dependencies:** `go_router: ^14.0.0`
