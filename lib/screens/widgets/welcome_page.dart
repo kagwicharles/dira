@@ -21,7 +21,7 @@ class WelcomePage extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF4A9B8E), Color(0xFFE8F5F3)],
+          colors: [AppColors.primary, AppColors.lightBackground],
           stops: [0.0, 0.6],
         ),
       ),
@@ -29,15 +29,11 @@ class WelcomePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            const Text(
-              'Welcome to Standup App',
-              style: TextStyle(fontSize: 12, color: Color(0xFF6B7280)),
-            ),
+            const Text('Welcome to DIRA'),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const LogoBadge(),
                   const SizedBox(height: 30),
                   // Robot Image Placeholder
                   Container(
