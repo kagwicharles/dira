@@ -24,121 +24,69 @@ class ConnectPage extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Ready to Connect',
-              style: TextStyle(fontSize: 12, color: Color(0xFF6B7280)),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 40),
-                    // Network visualization placeholder
-                    Container(
-                      height: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: AppColors.primary.withOpacity(0.3),
-                          width: 1,
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          // Network lines simulation
-                          CustomPaint(
-                            size: const Size(300, 300),
-                            painter: NetworkPainter(),
-                          ),
-                          // Center sync icon
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withOpacity(0.2),
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: AppColors.primary,
-                                width: 2,
-                              ),
-                            ),
-                            child: const Icon(
-                              Icons.sync,
-                              color: AppColors.primary,
-                              size: 32,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    const Text(
-                      'Power your Standups',
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Connect your GitHub account to\nautomatically populate your daily\nupdates with your latest commits and\npull requests.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF9CA3AF),
-                        height: 1.5,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(32),
               child: Column(
                 children: [
-                  PrimaryButton(
-                    text: 'Connect GitHub',
-                    onPressed: () {
-                      context.push('/github-integration');
-                    },
-                    icon: Icons.code,
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.lock_outline,
-                        size: 14,
-                        color: Colors.grey[600],
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        'Read-only access to public repositories',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  PageIndicator(currentPage: currentPage, totalPages: 3),
-                  const SizedBox(height: 20),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'I\'ll do this later',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xFF9CA3AF),
-                        fontWeight: FontWeight.w500,
+                  const SizedBox(height: 40),
+                  Container(
+                    height: 300,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: AppColors.primary.withValues(alpha: 0.3),
+                        width: 1,
                       ),
                     ),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Network lines simulation
+                        CustomPaint(
+                          size: const Size(300, 300),
+                          painter: NetworkPainter(),
+                        ),
+                        // Center sync icon
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: AppColors.primary.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppColors.primary,
+                              width: 2,
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.sync,
+                            color: AppColors.primary,
+                            size: 32,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 24),
+                  const Text(
+                    'Power your Standups',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Connect your GitHub account to\nautomatically populate your daily\nupdates with your latest commits and\npull requests.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF9CA3AF),
+                      height: 1.5,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
@@ -154,7 +102,7 @@ class NetworkPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.primary.withOpacity(0.3)
+      ..color = AppColors.primary.withValues(alpha: 0.3)
       ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
 

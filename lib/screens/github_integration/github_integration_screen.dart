@@ -36,7 +36,7 @@ class _GitHubIntegrationScreenState extends State<GitHubIntegrationScreen> {
                   onPressed: () {
                     context.pop();
                   },
-                  icon: Icon(Icons.arrow_back_ios),
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                 ),
                 const SizedBox(height: 40),
                 const Text(
@@ -131,7 +131,7 @@ class _GitHubIntegrationScreenState extends State<GitHubIntegrationScreen> {
                     color: AppColors.inputBackground,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                     ),
                   ),
                   child: DropdownButton<String>(
@@ -177,7 +177,7 @@ class _GitHubIntegrationScreenState extends State<GitHubIntegrationScreen> {
                     color: AppColors.inputBackground,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                     ),
                   ),
                   child: Row(
@@ -234,9 +234,9 @@ class _GitHubIntegrationScreenState extends State<GitHubIntegrationScreen> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
+                    color: Colors.blue.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                    border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     children: [
