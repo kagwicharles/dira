@@ -2,7 +2,9 @@ import 'package:dira/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import '../core/services/github_service.dart';
 import 'widgets/common/primary_button.dart';
+import 'widgets/github_connection_bottom_sheet.dart';
 import 'widgets/welcome_page.dart';
 import 'widgets/features_page.dart';
 import 'widgets/connect_page.dart';
@@ -16,11 +18,50 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
+  final GitHubService _gitHubService = GitHubService();
   int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the deep link listener early
+    _initializeGitHubListener();
+  }
+
+  void _initializeGitHubListener() {
+    _gitHubService.initDeepLinkListener(
+      onSuccess: (token, user) {
+        if (!mounted) return;
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Successfully connected as ${user['login']}!'),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+          ),
+        );
+
+        // Navigate to home screen
+        context.go('/home');
+      },
+      onError: (error) {
+        if (!mounted) return;
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('GitHub connection failed: $error'),
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 4),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _gitHubService.dispose();
     super.dispose();
   }
 
@@ -44,6 +85,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       2,
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOutCubic,
+    );
+  }
+
+  void _showGitHubConnectSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      isDismissible: true,
+      enableDrag: true,
+      builder: (context) =>
+          GitHubConnectBottomSheet(gitHubService: _gitHubService),
     );
   }
 
@@ -91,7 +144,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             const SizedBox(height: 16),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.push('/login');
+                              },
                               child: const Text(
                                 'I already have an account',
                                 style: TextStyle(
@@ -110,9 +165,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           children: [
                             PrimaryButton(
                               text: 'Connect GitHub',
-                              onPressed: () {
-                                context.push('/github-integration');
-                              },
+                              onPressed: _showGitHubConnectSheet,
                               icon: Icons.code,
                             ),
                             const SizedBox(height: 12),
@@ -136,7 +189,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             const SizedBox(height: 20),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.go('/home');
+                              },
                               child: const Text(
                                 'I\'ll do this later',
                                 style: TextStyle(
